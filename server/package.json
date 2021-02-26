@@ -1,0 +1,9 @@
+{
+  "name": "backend-shop",
+  "version": "1.0.0",
+  "description": "Backend server from PERN-Shop",
+  "main": "index.js",
+  "author": "TheStrikeM",
+  "license": "MIT",
+  "private": false
+}
