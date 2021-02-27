@@ -1,8 +1,8 @@
-class TypeController {
+class BrandController {
 
     async create(req, res) {}
 
     async getAll(req, res) {}
 }
 
-module.exports = new TypeController()
+module.exports = new BrandController()
