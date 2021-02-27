@@ -7,4 +7,4 @@ class UserController {
     async auth(req, res) {}
 }
 
-module.exports = UserController
+module.exports = new UserController()
