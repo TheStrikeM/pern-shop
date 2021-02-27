@@ -1,0 +1,56 @@
+Arguments: 
+  D:\nodejs\node.exe D:\bin\yarn.js add express pg pg-hstore sequilize cors dotenv
+
+PATH: 
+  D:\bin\;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;D:\nodejs\;C:\Program Files (x86)\Bitvise SSH Client;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Program Files\Git\cmd;C:\Users\TheStrikeM\AppData\Local\Programs\Python\Python39\Scripts\;C:\Users\TheStrikeM\AppData\Local\Programs\Python\Python39\;C:\Users\TheStrikeM\AppData\Local\Microsoft\WindowsApps;;D:\Microsoft VS Code\bin;D:\IntelliJ IDEA Community Edition 2020.2.3\bin;;D:\IntelliJ IDEA 2020.2.3\bin;;C:\Program Files\heroku\bin;D:\JetBrains Rider 2020.2.4\bin;;C:\Users\TheStrikeM\.dotnet\tools;D:\WebStorm 211.6085.22\bin;;C:\Users\TheStrikeM\AppData\Roaming\npm;C:\Users\TheStrikeM\AppData\Local\Yarn\bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  15.4.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/sequilize: Not found
+      at Request.params.callback [as _callback] (D:\lib\cli.js:66097:18)
+      at Request.self.callback (D:\lib\cli.js:140749:22)
+      at Request.emit (node:events:376:20)
+      at Request.<anonymous> (D:\lib\cli.js:141721:10)
+      at Request.emit (node:events:376:20)
+      at IncomingMessage.<anonymous> (D:\lib\cli.js:141643:12)
+      at Object.onceWrapper (node:events:482:28)
+      at IncomingMessage.emit (node:events:388:22)
+      at endReadableNT (node:internal/streams/readable:1295:12)
+      at processTicksAndRejections (node:internal/process/task_queues:80:21)
+
+npm manifest: 
+  {
+    "name": "backend-shop",
+    "version": "1.0.0",
+    "description": "Backend server from PERN-Shop",
+    "main": "index.js",
+    "author": "TheStrikeM",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+      "start": "nodemon index.js"
+    },
+    "dependencies": {
+      "bcryptjs": "^2.4.3",
+      "config": "^3.3.3",
+      "express": "^4.17.1",
+      "express-validator": "^6.10.0",
+      "jsonwebtoken": "^8.5.1",
+      "mongoose": "^5.11.17",
+      "nodemon": "^2.0.7"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
