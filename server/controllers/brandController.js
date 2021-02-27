@@ -7,11 +7,6 @@ class BrandController {
     async create(req, res, next) {
         const {name} = req.body
 
-        const isUnique = await Brand.findOne({name})
-        if(isUnique) {
-            return next(ApiError.arleadyHas('Этот брэнд уже существует'))
-        }
-
         return res.json(await Brand.create({name}))
     }
 
