@@ -86,6 +86,7 @@ class DeviceController {
             })
         } catch (e) {
             console.log('Error:', e)
+            return next(ApiError.badRequest("Ошибка при удалении"))
         }
     }
 }
