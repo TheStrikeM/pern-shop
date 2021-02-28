@@ -31,7 +31,7 @@ class DeviceController {
             return res.json(device)
         } catch (e) {
             console.log('Error:', e)
-            next(ApiError)
+            next(ApiError.badRequest("Ошибка в добавлении девайса"))
         }
     }
 
