@@ -15,7 +15,7 @@ module.exports = function(role) {
             }
 
             const decodedData = jwt.verify(token, process.env.SECRET_KEY)
-            if(decodedData.role != role) {
+            if(decodedData.role != role.toUpperCase()) {
                 return res.status(403).json({message: "Ваша роль не соответствует требуемой"})
             }
             req.user = decodedData
