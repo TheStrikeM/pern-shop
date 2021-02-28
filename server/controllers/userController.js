@@ -64,6 +64,7 @@ class UserController {
         }
 
         const token = generateAccessToken({id: user.id, email, role: user.role})
+
         return res.json({
             message: "Вы успешно авторизировались!",
             token,
