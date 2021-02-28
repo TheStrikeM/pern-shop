@@ -50,7 +50,24 @@ class UserController {
         })
     }
 
-    async login(req, res) {}
+    async login(req, res, next) {
+        const {email, password} = req.body
+
+        const user = await User.findOne({where: {email, password}})
+        if(!user) {
+            return next(ApiError.badRequest('Неправильный эмеил или пароль'))
+        }
+
+        const token = generateAccessToken({id: user.id, email, role: user.role})
+        return res.json({
+            message: "Вы успешно авторизировались!",
+            token,
+            user: {
+                email: user.email,
+                role: user.role
+            }
+        })
+    }
 
     async auth(req, res, next) {
         const {id} = req.query
