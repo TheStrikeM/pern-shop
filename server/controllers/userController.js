@@ -3,7 +3,6 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const ApiError = require('../error/ApiError')
-const {User} = require("../models/models")
 const UserService = require("../services/userService")
 
 

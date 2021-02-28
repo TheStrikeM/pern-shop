@@ -4,7 +4,6 @@ const {User} = require("../models/models")
 
 
 class UserService {
-    
     async register({email, password, role}) {
         const isBusyEmail = await User.findOne({where: {email}})
         if(isBusyEmail) {
