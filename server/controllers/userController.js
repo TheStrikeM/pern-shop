@@ -76,12 +76,13 @@ class UserController {
     }
 
     async auth(req, res, next) {
-        const {id} = req.query
-
-        if(!id) {
-            return next(ApiError.badRequest('Не задан ID'))
+        try {
+            const token = generateAccessToken(req.user.id, req.user.email, req.user.role)
+            return res.json({token})
+        } catch (e) {
+            console.log('Error:', e)
+            return next(ApiError.badRequest('Ошибка в auth'))
         }
-        return res.json(id)
     }
 }
 
