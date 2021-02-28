@@ -6,6 +6,15 @@ const ApiError = require('../error/ApiError')
 const {User, Basket} = require("../models/models")
 
 
+const generateAccessToken = ({id, email, role}) => {
+    return jwt.sign(
+        {id, email, role},
+        process.env.SECRET_KEY,
+        {expiresIn: '1h'}
+    )
+}
+
+
 class UserController {
 
     async register(req, res) {
@@ -27,11 +36,8 @@ class UserController {
         const newUser = await User.create({email, role, password: hashPassword})
         const basket = await Basket.create({userId: newUser.id})
 
-        const token = jwt.sign(
-            {id: newUser.id, email, role},
-            process.env.SECRET_KEY,
-            {expiresIn: '1h'}
-        )
+        const token = generateAccessToken({id: newUser.id, email, role})
+        
         return res.json({
             message: "Пользователь успешно создан!",
             token,
