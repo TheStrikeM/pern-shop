@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 
 const ApiError = require('../error/ApiError')
-const {User, Basket} = require("../models/models")
+const {User} = require("../models/models")
 
 
 const generateAccessToken = ({id, email, role}) => {
@@ -34,7 +34,6 @@ class UserController {
         console.log(hashPassword)
 
         const newUser = await User.create({email, role, password: hashPassword})
-        const basket = await Basket.create({userId: newUser.id})
 
         const token = generateAccessToken({id: newUser.id, email, role})
 
@@ -44,8 +43,7 @@ class UserController {
             user: {
                 id: newUser.id,
                 email: newUser.email,
-                role: newUser.role,
-                basket: basket.id
+                role: newUser.role
             }
         })
     }
