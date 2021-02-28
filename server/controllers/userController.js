@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken")
 
 const ApiError = require('../error/ApiError')
 const {User} = require("../models/models")
+const UserService = require("../services/userService")
 
 
 const generateAccessToken = ({id, email, role}) => {
@@ -18,59 +19,47 @@ const generateAccessToken = ({id, email, role}) => {
 class UserController {
 
     async register(req, res, next) {
-        const {email, password, role} = req.body
-
-        const errors = validationResult(req)
-        if(!errors.isEmpty()) {
-            return next(ApiError.badRequest('Некорректный эмеил или пароль или логин'))
-        }
-
-        const isBusyEmail = await User.findOne({where: {email}})
-        if(isBusyEmail) {
-            return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
-        }
-
-        const hashPassword = await bcrypt.hash(password, 4)
-        console.log(hashPassword)
-
-        const newUser = await User.create({email, role, password: hashPassword})
-
-        const token = generateAccessToken({id: newUser.id, email, role})
-
-        return res.json({
-            message: "Пользователь успешно создан!",
-            token,
-            user: {
-                id: newUser.id,
-                email: newUser.email,
-                role: newUser.role
+        try {
+            const errors = validationResult(req)
+            if(!errors.isEmpty()) {
+                return next(ApiError.badRequest('Некорректный эмеил или пароль или логин'))
             }
-        })
+
+            const newUser = await UserService.register(req.body)
+            const token = generateAccessToken({id: newUser.id, email: newUser.email, role: newUser.role})
+
+            return res.json({
+                message: "Пользователь успешно создан!",
+                token,
+                user: {
+                    id: newUser.id,
+                    email: newUser.email,
+                    role: newUser.role
+                }
+            })
+        } catch (e) {
+            console.log('Error:', e)
+            next(ApiError.badRequest(e.message))
+        }
     }
 
     async login(req, res, next) {
-        const {email, password} = req.body
+        try {
+            const user = await UserService.login(req.body)
+            const token = generateAccessToken({id: user.id, email: user.email, role: user.role})
 
-        const user = await User.findOne({where: {email}})
-        if(!user) {
-            return next(ApiError.badRequest('Неправильный эмеил'))
+            return res.json({
+                message: "Вы успешно авторизировались!",
+                token,
+                user: {
+                    email: user.email,
+                    role: user.role
+                }
+            })
+        } catch (e) {
+            console.log('Error:', e)
+            next(ApiError.badRequest(e.message))
         }
-
-        const isPassword = bcrypt.compareSync(password, user.password)
-        if(!isPassword) {
-            return next(ApiError.badRequest('Неправильный пароль'))
-        }
-
-        const token = generateAccessToken({id: user.id, email, role: user.role})
-
-        return res.json({
-            message: "Вы успешно авторизировались!",
-            token,
-            user: {
-                email: user.email,
-                role: user.role
-            }
-        })
     }
 
     async auth(req, res, next) {
