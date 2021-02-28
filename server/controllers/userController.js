@@ -17,7 +17,7 @@ const generateAccessToken = ({id, email, role}) => {
 
 class UserController {
 
-    async register(req, res) {
+    async register(req, res, next) {
         const {email, password, role} = req.body
 
         const errors = validationResult(req)
@@ -37,7 +37,7 @@ class UserController {
         const basket = await Basket.create({userId: newUser.id})
 
         const token = generateAccessToken({id: newUser.id, email, role})
-        
+
         return res.json({
             message: "Пользователь успешно создан!",
             token,
