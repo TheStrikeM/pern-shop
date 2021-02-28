@@ -64,7 +64,9 @@ class UserController {
 
     async auth(req, res, next) {
         try {
-            const token = generateAccessToken(req.user.id, req.user.email, req.user.role)
+            const user = req.user
+            const token = generateAccessToken(user.id, user.email, user.role)
+
             return res.json({token})
         } catch (e) {
             console.log('Error:', e)
