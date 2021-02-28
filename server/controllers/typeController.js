@@ -20,9 +20,15 @@ class TypeController {
         }
     }
 
-    async getAll(req, res) {
-        const types = await TypeService.getAll()
-        return res.json(types)
+    async getAll(req, res, next) {
+        try {
+            const types = await TypeService.getAll()
+
+            return res.json(types)
+        } catch (e) {
+            console.log('Error:', e)
+            next(ApiError.badRequest(e.message))
+        }
     }
 }
 
