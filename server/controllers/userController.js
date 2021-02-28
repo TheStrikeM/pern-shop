@@ -21,10 +21,10 @@ class UserController {
             return next(ApiError.badRequest('Пользователь с таким именем уже существует'))
         }
 
-        const hashPassword = bcrypt.hash(password, 4)
+        const hashPassword = await bcrypt.hash(password, 4)
         console.log(hashPassword)
 
-        const newUser = await User.create({email, role, password: 'testtest'})
+        const newUser = await User.create({email, role, password: hashPassword})
         const basket = await Basket.create({userId: newUser.id})
 
         const token = jwt.sign(
