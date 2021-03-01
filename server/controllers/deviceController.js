@@ -1,7 +1,3 @@
-const uuid = require("uuid")
-const path = require("path")
-
-const {Device, DeviceInfo} = require("../models/models")
 const ApiError = require("../error/ApiError")
 const DeviceService = require("../services/deviceService")
 
