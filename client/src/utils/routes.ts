@@ -4,7 +4,7 @@ import RegisterPage from "../pages/RegisterPage";
 
 export const privateRoutes = [
     {
-        path: '/login',
+        path: '/auth',
         component: LoginPage
     },
     {
@@ -16,6 +16,18 @@ export const privateRoutes = [
 export const publicRoutes = [
     {
         path: '/home',
+        component: React.Component
+    },
+    {
+        path: '/device',
+        component: React.Component
+    },
+    {
+        path: '/basket',
+        component: React.Component
+    },
+    {
+        path: '/filters',
         component: React.Component
     },
 ]

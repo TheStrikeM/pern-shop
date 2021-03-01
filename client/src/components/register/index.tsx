@@ -12,7 +12,7 @@ const Register = ({onRegister, dispatch}: {onRegister: Function, dispatch: any})
                 <RegisterForm onRegister={onRegister} dispatch={dispatch} />
                 <p className={"reg__message"}>
                     Already registered?
-                    <Link to={"login"} className={"default-link"}>Log in</Link>
+                    <Link to={"shop"} className={"default-link"}>Log in</Link>
                 </p>
             </div>
         </div>

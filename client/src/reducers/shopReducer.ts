@@ -1,19 +1,19 @@
-import {SET_KEY} from "../utils/constants";
+import {SET_ITEMS} from "../utils/constants";
 
 const initialState = {
-    active: "shop"
+    items: []
 }
 
 export default function(state = initialState, {type, payload}: {type: string, payload: any}) {
     switch(type) {
-        case SET_KEY:
+        case SET_ITEMS:
             return {
                 ...state,
-                active: payload
+                items: payload
             }
         default:
             return state
     }
 }
 
-export const setKey = (payload: string) => ({type: SET_KEY, payload})
+export const setItems = (payload: any) => ({type: SET_ITEMS, payload})
