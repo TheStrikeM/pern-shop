@@ -20,7 +20,7 @@ class DeviceController {
             })
         } catch (e) {
             console.log('Error:', e)
-            next(ApiError.badRequest("Ошибка в добавлении девайса"))
+            next(ApiError.badRequest(e.message))
         }
     }
 
@@ -55,17 +55,14 @@ class DeviceController {
         try {
             const {id} = req.params
 
-            if(!id) {
-                return next(ApiError.badRequest("ID не указан"))
-            }
+            await DeviceService.delete(id)
 
-            const device = await Device.destroy({where: {id}})
             return res.json({
                 message: `Девайс с ID ${id} успешно удален!`
             })
         } catch (e) {
             console.log('Error:', e)
-            return next(ApiError.badRequest("Ошибка при удалении"))
+            return next(ApiError.badRequest(e.message))
         }
     }
 

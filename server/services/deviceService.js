@@ -1,5 +1,5 @@
 const {Device, DeviceInfo} = require("../models/models")
-const FileService = require("../services/FileService")
+const FileService = require("./fileService")
 
 
 class DeviceService {
@@ -57,6 +57,20 @@ class DeviceService {
         )
 
         return device
+    }
+
+    async delete(id) {
+        if(!id) {
+            throw new Error('ID не указан.')
+        }
+
+        const candidate = await Device.findOne({where: {id}})
+        if(!candidate) {
+            throw new Error('Данного девайса не существует')
+        }
+
+        await Device.destroy({where: {id}})
+        FileService.deleteFile(candidate.img)
     }
 }
 
