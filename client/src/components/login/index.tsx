@@ -1,14 +1,14 @@
 import React from 'react'
-import './auth.sass'
+import './login.sass'
 import LoginForm from "./LoginForm"
 import loginImg from '../../assets/Login.svg'
 
-const Login = () => {
+const Login = ({onLogin}: {onLogin: Function}) => {
     return (
         <div>
             <div className="login">
                 <img src={loginImg} alt=""/>
-                <LoginForm />
+                <LoginForm onLogin={onLogin} />
                 <p className={"login__message"}>Not registered yet? <span className={"default-link"}>Sign up</span></p>
             </div>
         </div>

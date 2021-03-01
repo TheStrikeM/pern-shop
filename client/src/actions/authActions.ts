@@ -1,6 +1,5 @@
 import axios from "axios";
 import {setUser} from "../reducers/authReducer";
-import set = Reflect.set;
 
 interface IDefaultProps {
     email: string,

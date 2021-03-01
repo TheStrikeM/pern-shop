@@ -1,19 +1,21 @@
 import React from "react";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
 
-export const privateRoutes = () => ([
+export const privateRoutes = [
     {
         path: '/login',
-        component: React.Component
+        component: LoginPage
     },
     {
         path: '/register',
-        component: React.Component
+        component: RegisterPage
     },
-])
+]
 
-export const publicRoutes = () => ([
+export const publicRoutes = [
     {
         path: '/home',
         component: React.Component
     },
-])
+]
