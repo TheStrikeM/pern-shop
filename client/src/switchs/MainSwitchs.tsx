@@ -3,6 +3,7 @@ import AuthSwitch from "./AuthSwitch"
 import ShopSwitch from "./ShopSwitch"
 import Header from "../components/header/Header"
 import {useSelector} from "react-redux";
+import Footer from "../components/footer/Footer";
 
 const MainSwitchs = () => {
     const {isAuth} = useSelector((state: any) => ({
@@ -23,6 +24,7 @@ const MainSwitchs = () => {
                     <>
                         <Header type={"auth"} />
                         <AuthSwitch />
+                        <Footer />
                     </>
                 )
             }
