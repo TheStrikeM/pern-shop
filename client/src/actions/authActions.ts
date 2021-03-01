@@ -32,6 +32,7 @@ export const loginUser = async ({email, password}: IDefaultProps, dispatch: any)
 
         dispatch(setUser(data.user))
         localStorage.setItem('token', data.token)
+        return data
     } catch (e) {
         return e.response.data.message
     }

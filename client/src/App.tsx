@@ -1,6 +1,6 @@
 import React from 'react'
-import 'antd/dist/antd.css'
 import './app.sass'
+import 'antd/dist/antd.css'
 import MainSwitchs from "./switchs/MainSwitchs";
 import {authUser} from "./actions/authActions";
 import {useDispatch} from "react-redux";

@@ -3,6 +3,7 @@ import './header.sass'
 import {Link} from 'react-router-dom'
 import {useSelector, useDispatch} from "react-redux";
 import {setKey} from "../../reducers/headerReducer";
+import {logoutUser} from "../../reducers/authReducer";
 
 const Header = ({type}: any) => {
     const {activeItem} = useSelector((state: any) => ({
@@ -36,8 +37,8 @@ const Header = ({type}: any) => {
 
     return (
         <header>
-            <Link to={"shop"} className="login-link-active" href="">Sex in</Link>
-            <Link to={"shop"} className="reg-link" href="">In sex</Link>
+            <Link to={"shop"} className="login-link-active">Sex in</Link>
+            <Link to={"shop"} onClick={() => dispatch(logoutUser())} className="reg-link">Logout</Link>
         </header>
     );
 };
