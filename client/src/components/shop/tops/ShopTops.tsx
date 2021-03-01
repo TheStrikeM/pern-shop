@@ -1,41 +1,18 @@
 import React from 'react';
+import ShopTopsItem from "./ShopTopsItem";
 
 const ShopTops = () => {
     return (
         <div className="devices__last">
             <div className="devices-brands">
-                <div className="devices-brands__item">
-                    <div className="devices-brands__item__tag">
-                        <img src="" alt=""/>
-                        <span>Brand</span>
-                    </div>
-
-                    <div className="devices-brands__item__name">
-                        SAMSUNG
-                    </div>
-
-                    <div className="devices-brands__item__view">
-                        <span>View</span>
-                        <img src="" alt=""/>
-                    </div>
-                </div>
+                <ShopTopsItem type={"Brand"} name={"SAMSUNG"} />
+                <ShopTopsItem type={"Brand"} name={"Lenovo"} />
+                <ShopTopsItem type={"Brand"} name={"Apple"} />
             </div>
             <div className="devices-types">
-                <div className="devices-types__item">
-                    <div className="devices-types__item__tag">
-                        <img src="" alt=""/>
-                        <span>Brand</span>
-                    </div>
-
-                    <div className="devices-types__item__name">
-                        SAMSUNG
-                    </div>
-
-                    <div className="devices-types__item__view">
-                        <span>View</span>
-                        <img src="" alt=""/>
-                    </div>
-                </div>
+                <ShopTopsItem type={"Type"} name={"Phones"} />
+                <ShopTopsItem type={"Type"} name={"Computers"} />
+                <ShopTopsItem type={"Type"} name={"Refrigerators"} />
             </div>
         </div>
     );
