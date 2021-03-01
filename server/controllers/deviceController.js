@@ -30,9 +30,8 @@ class DeviceController {
 
             limit = limit || 10
             page = page || 1
-            let offset = page * limit - limit
 
-            const devices = await DeviceService.getAll({brandId, typeId}, limit, offset)
+            const devices = await DeviceService.getAll({brandId, typeId}, limit, page)
 
             return res.json(devices)
         } catch (e) {
@@ -41,15 +40,15 @@ class DeviceController {
         }
     }
 
-    async getOne(req, res) {
-        const {id} = req.params
-        const device = await Device.findOne(
-            {
-                where: {id},
-                include: [{model: DeviceInfo, as: 'device_infos'}]
-            }
-        )
-        return res.json(device)
+    async getOne(req, res, next) {
+        try {
+            const device = await DeviceService.getOne(req.params.id)
+
+            return res.json(device)
+        } catch (e) {
+            console.log('Error:', e)
+            next(ApiError.badRequest(e.message))
+        }
     }
 
     async delete(req, res, next) {

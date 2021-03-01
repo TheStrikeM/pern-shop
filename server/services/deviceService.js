@@ -28,7 +28,9 @@ class DeviceService {
         return newDevice
     }
 
-    async getAll({brandId, typeId}, limit, offset) {
+    async getAll({brandId, typeId}, limit, page) {
+        const offset = page * limit - limit
+
         let devices
         if(!brandId && !typeId) {
             devices = await Device.findAndCountAll({limit, offset})
@@ -40,6 +42,21 @@ class DeviceService {
             devices = await Device.findAndCountAll({where: {brandId, typeId}, limit, offset})
         }
         return devices
+    }
+
+    async getOne(id) {
+        if(!id) {
+            throw new Error('ID не указан')
+        }
+
+        const device = await Device.findOne(
+            {
+                where: {id},
+                include: [{model: DeviceInfo, as: 'device_infos'}]
+            }
+        )
+
+        return device
     }
 }
 
