@@ -2,6 +2,7 @@ import React from 'react'
 import './register.sass'
 import RegisterForm from "./RegisterForm"
 import registerImg from '../../assets/Register.svg'
+import { Link } from 'react-router-dom';
 
 const Register = ({onRegister}: {onRegister: Function}) => {
     return (
@@ -9,7 +10,10 @@ const Register = ({onRegister}: {onRegister: Function}) => {
             <div className="reg">
                 <img src={registerImg} alt=""/>
                 <RegisterForm onRegister={onRegister} />
-                <p className={"reg__message"}>Already registered? <span className={"default-link"}>Log in</span></p>
+                <p className={"reg__message"}>
+                    Already registered?
+                    <Link to={"login"} className={"default-link"}>Log in</Link>
+                </p>
             </div>
         </div>
     );
