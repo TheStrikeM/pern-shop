@@ -6,7 +6,7 @@ const AuthSwitch = () => {
     return (
         <Switch>
             {privateRoutes.map(el => (
-                <Route path={el.path} component={el.component} />
+                <Route path={el.path} exact component={el.component} />
             ))}
             <Redirect to={"login"} />
         </Switch>

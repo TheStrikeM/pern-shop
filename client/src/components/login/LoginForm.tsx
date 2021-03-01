@@ -1,8 +1,13 @@
 import React, {useState} from 'react';
+import {message} from 'antd'
 
 const LoginForm = ({onLogin}: {onLogin: Function}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+
+    const viewError = (mess: string) => {
+        message.error(mess);
+    };
 
     const setLogin = () => {
         onLogin({email, password})
