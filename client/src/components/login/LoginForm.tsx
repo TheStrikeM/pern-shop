@@ -5,13 +5,21 @@ const LoginForm = ({onLogin}: {onLogin: Function}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
-    const viewError = (mess: string) => {
+    const viewError = (mess: string): void => {
         message.error(mess);
-    };
+    }
+
+    const viewSuccess = (mess: string): void => {
+        message.success(mess);
+    }
+
 
     const setLogin = () => {
         onLogin({email, password}).then((res: any) => {
             console.log(res)
+            if(res instanceof Object) {
+                return viewSuccess(res.message)
+            }
             viewError(res)
         })
     }
