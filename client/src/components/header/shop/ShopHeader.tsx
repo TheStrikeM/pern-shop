@@ -10,7 +10,7 @@ const ShopHeader = ({dispatch, activeItem}: {dispatch: any, activeItem: string})
     const isTypes = activeItem === "types" ? "-active" : ""
 
     return (
-        <header className={"shop"}>
+        <header className={"shop-header"}>
             <p>STRIKE SHOP</p>
             <div className="links">
                 <Link

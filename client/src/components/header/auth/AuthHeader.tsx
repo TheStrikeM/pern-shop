@@ -6,7 +6,7 @@ const AuthHeader = ({dispatch, activeItem}: {dispatch: any, activeItem: string})
     const isLogin = activeItem === "shop" ? '-active' : ''
     const isRegister = activeItem === "register" ? '-active' : ''
     return (
-        <header className={"auth"}>
+        <header className={"auth-header"}>
             <Link
                 to={"shop"}
                 onClick={() => dispatch(setKey('shop'))}
