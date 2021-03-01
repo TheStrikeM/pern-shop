@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ShopSwitch = () => {
+const LoginForm = () => {
     return (
         <div>
-            ShopSwitch
+            LoginForm
         </div>
     );
 };
 
-export default ShopSwitch;
+export default LoginForm;

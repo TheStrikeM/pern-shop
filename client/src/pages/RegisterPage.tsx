@@ -1,11 +1,11 @@
 import React from 'react';
 
-const ShopSwitch = () => {
+const RegisterPage = () => {
     return (
         <div>
-            ShopSwitch
+            Regiser
         </div>
     );
 };
 
-export default ShopSwitch;
+export default RegisterPage;
