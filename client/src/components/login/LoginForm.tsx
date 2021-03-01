@@ -9,9 +9,9 @@ const LoginForm = ({onLogin}: {onLogin: Function}) => {
         onLogin({email, password}).then((res: any) => {
             console.log(res)
             if(typeof res === "object") {
-                message.success(String(res.message), 3)
+                message.success(String(res.message), 2)
             } else {
-                message.error(String(res), 3)
+                message.error(String(res), 2)
             }
 
         })
