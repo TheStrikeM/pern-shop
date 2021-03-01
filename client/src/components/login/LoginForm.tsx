@@ -10,7 +10,10 @@ const LoginForm = ({onLogin}: {onLogin: Function}) => {
     };
 
     const setLogin = () => {
-        onLogin({email, password})
+        onLogin({email, password}).then((res: any) => {
+            console.log(res)
+            viewError(res)
+        })
     }
     return (
         <form className={"login-form"}>

@@ -15,26 +15,25 @@ export const registerUser = async ({email, password}: IDefaultProps, dispatch: a
                 localStorage.setItem('token', data.token)
             })
             .catch(reason => {
-                console.error(`Прозошла ошибка: ${reason}`)
+                console.error(`Прозошла ошибка: ${reason.data}`)
             })
     } catch (e) {
-        console.log('Error:', e)
+        console.log('Error:', e.message)
     }
 }
 
-export const loginUser = async ({email, password}: IDefaultProps, dispatch: any): Promise<void> => {
+export const loginUser = async ({email, password}: IDefaultProps, dispatch: any): Promise<any> => {
     try {
-        axios.post('http://localhost:5000/user/login', {email, password})
-            .then(({data}) => {
-                console.log("Поздравляю, вы успешно авторизировались!")
-                dispatch(setUser(data.user))
-                localStorage.setItem('token', data.token)
-            })
-            .catch(reason => {
-                console.error(`Прозошла ошибка: ${reason}`)
-            })
+        const response = axios.post('http://localhost:5000/user/login', {email, password})
+        const data = (await response).data
+
+        console.log("Поздравляю, вы успешно авторизировались!")
+        console.log(data)
+
+        dispatch(setUser(data.user))
+        localStorage.setItem('token', data.token)
     } catch (e) {
-        console.log('Error:', e)
+        return e.response.data.message
     }
 }
 
