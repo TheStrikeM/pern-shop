@@ -2,7 +2,7 @@ import React from 'react'
 import './shop.sass'
 import SearchInfo from "./SearchInfo"
 import ListCardDevices from "./cards/ListCardDevices"
-import ShopTops from "./ShopTops"
+import ShopTops from "./tops/ShopTops"
 
 const Shop = () => {
     return (
