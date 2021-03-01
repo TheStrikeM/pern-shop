@@ -1,13 +1,22 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import {message} from 'antd'
+import {useSelector} from "react-redux";
+import {setLoginLoading} from "../../reducers/loadingReducer";
 
-const LoginForm = ({onLogin}: {onLogin: Function}) => {
+
+const LoginForm = ({onLogin, dispatch}: {onLogin: Function, dispatch: any}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
+    const {isLoginLoading} = useSelector((state: any) => ({
+        isLoginLoading: state.loading.isLoginLoaded
+    }))
+
     const setLogin = () => {
+        dispatch(setLoginLoading(false))
         onLogin({email, password}).then((res: any) => {
             console.log(res)
+            dispatch(setLoginLoading(true))
             if(typeof res === "object") {
                 message.success(String(res.message), 2)
             } else {
@@ -39,9 +48,9 @@ const LoginForm = ({onLogin}: {onLogin: Function}) => {
             <div
                 style={{marginTop: "75px"}}
                 onClick={() => setLogin()}
-                className="default-button"
+                className={"default-button" + (isLoginLoading ? "" : "-loading")}
             >
-                Log in
+                {isLoginLoading ? "Log in" : "Loading..."}
             </div>
         </form>
     );

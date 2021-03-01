@@ -12,7 +12,7 @@ const RegisterPage = () => {
 
     return (
         <div>
-            <Register onRegister={onRegister} />
+            <Register onRegister={onRegister} dispatch={dispatch} />
         </div>
     )
 }

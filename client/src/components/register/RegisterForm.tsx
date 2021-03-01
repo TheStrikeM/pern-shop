@@ -1,14 +1,22 @@
 import React, {useState} from 'react';
 import {message} from "antd";
+import {useSelector} from "react-redux";
+import {setRegisterLoading} from "../../reducers/loadingReducer";
 
-const RegisterForm = ({onRegister}: {onRegister: Function}) => {
+const RegisterForm = ({onRegister, dispatch}: {onRegister: Function, dispatch: any}) => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [repeat, setRepeat] = useState('')
 
+    const {isLoadingRegister} = useSelector((state: any) => ({
+        isLoadingRegister: state.loading.isRegisterLoaded
+    }))
+
     const setRegister = () => {
+        dispatch(setRegisterLoading(false))
         onRegister({email, password}).then((res: any) => {
             console.log(res)
+            dispatch(setRegisterLoading(true))
             if(typeof res === "object") {
                 message.success(String(res.message), 2)
             } else {
@@ -46,9 +54,9 @@ const RegisterForm = ({onRegister}: {onRegister: Function}) => {
             <div
                 style={{marginTop: "75px"}}
                 onClick={() => setRegister()}
-                className="default-button"
+                className={"default-button" + (isLoadingRegister ? "" : "-loading")}
             >
-                Log in
+                {isLoadingRegister ? "Sign up" : "Loading..."}
             </div>
         </form>
     );

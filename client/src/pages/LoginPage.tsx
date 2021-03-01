@@ -12,7 +12,7 @@ const LoginPage = () => {
 
     return (
         <div>
-            <Login onLogin={onLogin} />
+            <Login dispatch={dispatch} onLogin={onLogin} />
         </div>
     )
 }
