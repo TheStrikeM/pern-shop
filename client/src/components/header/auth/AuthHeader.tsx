@@ -1,13 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import {setKey} from "../../../reducers/headerReducer"
-import './auth-header.sass'
 
 const AuthHeader = ({dispatch, activeItem}: {dispatch: any, activeItem: string}) => {
     const isLogin = activeItem === "shop" ? '-active' : ''
     const isRegister = activeItem === "register" ? '-active' : ''
     return (
-        <header>
+        <header className={"auth"}>
             <Link
                 to={"shop"}
                 onClick={() => dispatch(setKey('shop'))}

@@ -15,7 +15,7 @@ const LoginForm = ({onLogin, dispatch}: {onLogin: Function, dispatch: any}) => {
     const setLogin = () => {
         dispatch(setLoginLoading(false))
         onLogin({email, password}).then((res: any) => {
-            console.log(res)
+            console.log(`Eto ${res}`)
             dispatch(setLoginLoading(true))
             if(typeof res === "object") {
                 message.success(String(res.message), 2)

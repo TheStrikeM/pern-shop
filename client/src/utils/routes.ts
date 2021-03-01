@@ -4,7 +4,7 @@ import RegisterPage from "../pages/RegisterPage";
 
 export const privateRoutes = [
     {
-        path: '/auth',
+        path: '/login',
         component: LoginPage
     },
     {

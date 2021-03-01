@@ -2,6 +2,7 @@ import React from 'react'
 import {useSelector, useDispatch} from "react-redux"
 import AuthHeader from "./auth/AuthHeader"
 import ShopHeader from "./shop/ShopHeader"
+import './header.sass'
 
 const Header = ({type}: any) => {
     const {activeItem} = useSelector((state: any) => ({
