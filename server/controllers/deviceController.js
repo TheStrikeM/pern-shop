@@ -3,7 +3,7 @@ const path = require("path")
 
 const {Device, DeviceInfo} = require("../models/models")
 const ApiError = require("../error/ApiError")
-const deviceService = require("../services/deviceService")
+const DeviceService = require("../services/deviceService")
 
 
 class DeviceController {
@@ -12,7 +12,7 @@ class DeviceController {
         try {
             const {img} = req.files
 
-            const newDevice = await deviceService.create(req.body, img)
+            const newDevice = await DeviceService.create(req.body, img)
 
             return res.json({
                 message: "Девайс успешно создан!",
@@ -32,21 +32,12 @@ class DeviceController {
             page = page || 1
             let offset = page * limit - limit
 
-            let devices;
-            if(!brandId && !typeId) {
-                devices = await Device.findAndCountAll({limit, offset})
-            } else if(brandId && !typeId) {
-                devices = await Device.findAndCountAll({where: {brandId}, limit, offset})
-            } else if(!brandId && typeId) {
-                devices = await Device.findAndCountAll({where: {typeId}, limit, offset})
-            } else if(brandId && typeId) {
-                devices = await Device.findAndCountAll({where: {brandId, typeId}, limit, offset})
-            }
+            const devices = await DeviceService.getAll({brandId, typeId}, limit, offset)
 
             return res.json(devices)
         } catch (e) {
             console.log('Error:', e)
-            next(ApiError)
+            next(ApiError.badRequest(e.message))
         }
     }
 

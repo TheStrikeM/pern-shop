@@ -24,12 +24,22 @@ class DeviceService {
                 })
             })
         }
-        
+
         return newDevice
     }
 
-    async getAll() {
-        return await Type.findAll()
+    async getAll({brandId, typeId}, limit, offset) {
+        let devices
+        if(!brandId && !typeId) {
+            devices = await Device.findAndCountAll({limit, offset})
+        } else if(brandId && !typeId) {
+            devices = await Device.findAndCountAll({where: {brandId}, limit, offset})
+        } else if(!brandId && typeId) {
+            devices = await Device.findAndCountAll({where: {typeId}, limit, offset})
+        } else if(brandId && typeId) {
+            devices = await Device.findAndCountAll({where: {brandId, typeId}, limit, offset})
+        }
+        return devices
     }
 }
 
