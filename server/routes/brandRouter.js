@@ -1,6 +1,7 @@
 const Router = require("express")
 
 const brandController = require('../controllers/brandController')
+const checkRole = require("../middleware/checkRoleMiddleware")
 
 const router = new Router()
 
