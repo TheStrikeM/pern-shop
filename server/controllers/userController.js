@@ -69,7 +69,7 @@ class UserController {
             return res.json({token})
         } catch (e) {
             console.log('Error:', e)
-            return next(ApiError.badRequest('Ошибка в login'))
+            return next(ApiError.badRequest('Ошибка в auth'))
         }
     }
 }

@@ -36,15 +36,20 @@ export const loginUser = async ({email, password}: IDefaultProps, dispatch: any)
     }
 }
 
-export const authUser = async (dispatch: any): Promise<void> => {
+export const authUser = async (dispatch: any) => {
     try {
-        axios.get('http://localhost:5000/user/auth',
-            {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}})
-            .then(({data}) => {
-                dispatch(setUser(data.user))
-            })
+        const response = axios.get(
+            "http://127.0.0.1:5000/user/auth",
+            {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
+        )
+
+        const data = (await response).data
+        console.log(data)
+        dispatch(setUser(data.user))
+
+        localStorage.setItem('token', data.token)
     } catch (e) {
-        console.log('Error:', e)
+        alert(e.response.data.message)
         localStorage.removeItem('token')
     }
 }
