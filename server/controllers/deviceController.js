@@ -68,21 +68,12 @@ class DeviceController {
 
     async update(req, res, next) {
         try {
-            const {id, name, price, rating, img, typeId, brandId} = req.body
-
-            if(!id) {
-                return next(ApiError.badRequest("ID не указан"))
-            }
-
-            const updatedDevice = await Device.update(
-                {id, name, price, rating, img, typeId, brandId},
-                {where: {id}}
-            )
+            const updatedDevice = await DeviceService.update(req.body)
 
             return res.json(updatedDevice)
         } catch (e) {
             console.log('Error:', e)
-            return next(ApiError.badRequest("Ошибка при изменении"))
+            return next(ApiError.badRequest(e.message))
         }
     }
 }

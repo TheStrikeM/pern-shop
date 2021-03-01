@@ -72,6 +72,24 @@ class DeviceService {
         await Device.destroy({where: {id}})
         FileService.deleteFile(candidate.img)
     }
+
+    async update(device) {
+        if(!device) {
+            throw new Error('Девайс не найден.')
+        }
+
+        const candidate = await Device.findOne({where: {id: device.id}})
+        if(!candidate) {
+            throw new Error('Данного девайса не существует')
+        }
+
+        const updatedDevice = await Device.update(
+            {...device},
+            {where: {id: device.id}}
+        )
+
+        return updatedDevice
+    }
 }
 
 module.exports = new DeviceService()
