@@ -1,6 +1,7 @@
 import React from "react";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
+import ShopPage from "../pages/ShopPage";
 
 export const publicRoutes = [
     {
@@ -16,18 +17,6 @@ export const publicRoutes = [
 export const privateRoutes = [
     {
         path: '/home',
-        component: React.Component
-    },
-    {
-        path: '/device',
-        component: React.Component
-    },
-    {
-        path: '/basket',
-        component: React.Component
-    },
-    {
-        path: '/filters',
-        component: React.Component
+        component: ShopPage
     },
 ]

@@ -1,8 +1,9 @@
 import React from 'react';
 import {publicRoutes} from "../utils/routes";
-import {Switch, Route, Redirect} from "react-router-dom";
+import {Route, Redirect, Switch} from "react-router-dom";
 
 const AuthSwitch = () => {
+    console.log("Auth switch")
     return (
         <Switch>
             {publicRoutes.map(el => (

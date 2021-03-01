@@ -66,7 +66,13 @@ class UserController {
             const user = req.user
             const token = generateAccessToken({id: user.id, email: user.email, role: user.role})
 
-            return res.json({token})
+            return res.json({
+                user: {
+                    email: user.email,
+                    role: user.role
+                },
+                token
+            })
         } catch (e) {
             console.log('Error:', e)
             return next(ApiError.badRequest('Ошибка в auth'))
