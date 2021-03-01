@@ -8,17 +8,16 @@ interface IDefaultProps {
 
 export const registerUser = async ({email, password}: IDefaultProps, dispatch: any): Promise<void> => {
     try {
-        axios.post('http://localhost:5000/user/reg', {email, password})
-            .then(({data}) => {
-                console.log("Поздравляю, вы успешно зарегистрировались!")
-                dispatch(setUser(data.user))
-                localStorage.setItem('token', data.token)
-            })
-            .catch(reason => {
-                console.error(`Прозошла ошибка: ${reason.data}`)
-            })
+        const response = axios.post('http://localhost:5000/user/reg', {email, password})
+        const data = (await response).data
+
+        console.log("Поздравляю, вы успешно зарегистрировались!")
+
+        dispatch(setUser(data.user))
+        localStorage.setItem('token', data.token)
+        return data
     } catch (e) {
-        console.log('Error:', e.message)
+        return e.response.data.message
     }
 }
 
@@ -28,7 +27,6 @@ export const loginUser = async ({email, password}: IDefaultProps, dispatch: any)
         const data = (await response).data
 
         console.log("Поздравляю, вы успешно авторизировались!")
-        console.log(data)
 
         dispatch(setUser(data.user))
         localStorage.setItem('token', data.token)

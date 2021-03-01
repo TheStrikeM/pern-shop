@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {message} from "antd";
 
 const RegisterForm = ({onRegister}: {onRegister: Function}) => {
     const [email, setEmail] = useState('')
@@ -6,7 +7,14 @@ const RegisterForm = ({onRegister}: {onRegister: Function}) => {
     const [repeat, setRepeat] = useState('')
 
     const setRegister = () => {
-        onRegister({email, password})
+        onRegister({email, password}).then((res: any) => {
+            console.log(res)
+            if(typeof res === "object") {
+                message.success(String(res.message), 3)
+            } else {
+                message.error(String(res), 3)
+            }
+        })
     }
     return (
         <form className={"reg-form"}>
