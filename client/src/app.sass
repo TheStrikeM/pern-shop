@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap')
+
+$default: #5F2EEA
+$link: #0797FF
+
+body
+  margin: 0
+  padding: 0
+  font-family: Poppins
+  font-style: normal
+  font-weight: normal
+
+.default-button
+  background: $default
+  color: white
+  padding: 6px 45px
+  border-radius: 13px
+  transition: all 0.6s
+  cursor: pointer
+  font-size: 17px
+
+  &:hover
+    background: darken($default, 10%)
+
+  &:active
+    transform: translateY(10px)
+
+.default-link
+  color: $link
+  cursor: pointer
+  transition: all 0.4s
+  &:active
+    color: darken($link, 25%)

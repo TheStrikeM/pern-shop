@@ -9,7 +9,7 @@ const Login = () => {
             <div className="login">
                 <img src={loginImg} alt=""/>
                 <LoginForm />
-                <p className={"login__message"}>Not registered yet? <span>Sign up</span></p>
+                <p className={"login__message"}>Not registered yet? <span className={"default-link"}>Sign up</span></p>
             </div>
         </div>
     );
