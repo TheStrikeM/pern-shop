@@ -15,6 +15,6 @@ router.post(
     userController.register
 )
 router.post('/login', userController.login)
-router.get('/login', authMiddleware, userController.auth)
+router.get('/auth', authMiddleware, userController.auth)
 
 module.exports = router
