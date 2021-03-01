@@ -1,10 +1,12 @@
+import {SET_KEY} from "../utils/constants";
+
 const initialState = {
     active: "login"
 }
 
 export default function(state = initialState, {type, payload}: {type: string, payload: any}) {
     switch(type) {
-        case "SET_KEY":
+        case SET_KEY:
             return {
                 ...state,
                 active: payload
@@ -14,4 +16,4 @@ export default function(state = initialState, {type, payload}: {type: string, pa
     }
 }
 
-export const setKey = (payload: string) => ({type: "SET_KEY", payload})
+export const setKey = (payload: string) => ({type: SET_KEY, payload})

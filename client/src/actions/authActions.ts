@@ -1,5 +1,6 @@
 import axios from "axios";
 import {setUser} from "../reducers/authReducer";
+import {setRegisterLoading} from "../reducers/loadingReducer";
 
 interface IDefaultProps {
     email: string,
@@ -10,6 +11,11 @@ export const registerUser = async ({email, password}: IDefaultProps, dispatch: a
     try {
         const response = axios.post('http://localhost:5000/user/reg', {email, password})
         const data = (await response).data
+
+        dispatch(setRegisterLoading(false))
+        response.then(({data}) => {
+            dispatch(setRegisterLoading(true))
+        })
 
         console.log("Поздравляю, вы успешно зарегистрировались!")
 
