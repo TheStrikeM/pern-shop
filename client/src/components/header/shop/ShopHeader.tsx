@@ -1,5 +1,5 @@
 import React from 'react'
-import {logoutUser} from "../../../reducers/authReducer"
+import {AuthActions} from "../../../reducers/authReducer"
 import {setKey} from "../../../reducers/headerReducer"
 import { Link } from 'react-router-dom'
 
@@ -36,7 +36,7 @@ const ShopHeader = ({dispatch, activeItem}: {dispatch: any, activeItem: string})
                 </Link>
                 <Link
                     to={"types"}
-                    onClick={() => dispatch(logoutUser())}
+                    onClick={() => dispatch(AuthActions.logoutUser())}
                     className="links__link"
                 >
                     Logout

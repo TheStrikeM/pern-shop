@@ -7,7 +7,7 @@ const RegisterPage = () => {
     const dispatch = useDispatch()
 
     const onRegister = (user: any) => {
-        return registerUser(user, dispatch)
+        return dispatch(registerUser(user))
     }
 
     return (

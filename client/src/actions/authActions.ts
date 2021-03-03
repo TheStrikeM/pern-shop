@@ -1,55 +1,55 @@
 import axios from "axios"
-import {setUser} from "../reducers/authReducer"
+import {AuthActions} from "../reducers/authReducer"
+import {Dispatch} from "redux";
+import {AuthActionTypes} from "../types/actionTypes";
+import {UserResponseType} from "../api";
+import AuthApi from "../api/authApi";
 
-interface IDefaultProps {
-    email: string,
-    password: string
-}
 
-export const registerUser = async ({email, password}: IDefaultProps, dispatch: any): Promise<void> => {
-    try {
-        const response = axios.post('http://localhost:5000/user/reg', {email, password})
-        const data = (await response).data
+export const registerUser = ({email, password}: UserResponseType) => {
+    return async (dispatch: Dispatch<AuthActionTypes>) => {
+        try {
+            const authData = await AuthApi.register(email, password)
+            console.log("Поздравляю, вы успешно зарегистрировались!")
 
-        console.log("Поздравляю, вы успешно зарегистрировались!")
+            dispatch(AuthActions.setUser(authData.user))
+            localStorage.setItem('token', authData.token)
 
-        dispatch(setUser(data.user))
-        localStorage.setItem('token', data.token)
-        return data
-    } catch (e) {
-        return e.response.data.message
+            return authData
+        } catch (e) {
+            return e.response.data.message
+        }
     }
 }
 
-export const loginUser = async ({email, password}: IDefaultProps, dispatch: any): Promise<any> => {
-    try {
-        const response = axios.post('http://localhost:5000/user/login', {email, password})
-        const data = (await response).data
+export const loginUser = ({email, password}: UserResponseType) => {
+    return async (dispatch: Dispatch<AuthActionTypes>) => {
+        try {
+            const authData = await AuthApi.login(email, password)
+            console.log("Поздравляю, вы успешно авторизировались!")
 
-        console.log("Поздравляю, вы успешно авторизировались!")
+            dispatch(AuthActions.setUser(authData.user))
+            localStorage.setItem('token', authData.token)
 
-        dispatch(setUser(data.user))
-        localStorage.setItem('token', data.token)
-        return data
-    } catch (e) {
-        return e.response.data.message
+            return authData
+        } catch (e) {
+            return e.response.data.message
+        }
     }
 }
 
-export const authUser = async (dispatch: any) => {
-    try {
-        const response = axios.get(
-            "http://127.0.0.1:5000/user/auth",
-            {headers: {Authorization: `Bearer ${localStorage.getItem('token')}`}}
-        )
+export const authUser = () => {
+    return async (dispatch: Dispatch<AuthActionTypes>) => {
+        try {
+            const authData = await AuthApi.auth()
 
-        const data = (await response).data
-        console.log(data)
-        dispatch(setUser(data.user))
+            console.log(authData)
+            dispatch(AuthActions.setUser(authData.user))
 
-        localStorage.setItem('token', data.token)
-    } catch (e) {
-        alert(e.response.data.message)
-        localStorage.removeItem('token')
+            localStorage.setItem('token', authData.token)
+        } catch (e) {
+            alert(e.response.data.message)
+            localStorage.removeItem('token')
+        }
     }
 }

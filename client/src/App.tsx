@@ -9,7 +9,7 @@ function App() {
     const dispatch = useDispatch()
 
     React.useEffect(() => {
-        authUser(dispatch)
+        dispatch(authUser())
     }, [])
     return (
         <div className="App">

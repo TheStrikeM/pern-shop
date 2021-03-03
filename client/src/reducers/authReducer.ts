@@ -1,4 +1,6 @@
 import {LOGOUT, SET_USER} from "../utils/constants";
+import {LogoutType, SetUserActionType} from "../types/actionTypes";
+import {UserResponseType} from "../api";
 
 const initialState = {
     currentUser: {},
@@ -25,5 +27,12 @@ export default function(state = initialState, {type, payload}: {type: string, pa
     }
 }
 
-export const setUser = (payload: any) => ({type: SET_USER, payload})
-export const logoutUser = () => ({type: LOGOUT})
+export class AuthActions {
+    static setUser(payload: UserResponseType): SetUserActionType {
+        return {type: SET_USER, payload}
+    }
+
+    static logoutUser(): LogoutType {
+        return {type: LOGOUT}
+    }
+}

@@ -7,7 +7,7 @@ const LoginPage = () => {
     const dispatch = useDispatch()
 
     const onLogin = (user: any) => {
-        return loginUser(user, dispatch)
+        return dispatch(loginUser(user))
     }
 
     return (

@@ -16,8 +16,9 @@ export type ApiDefaultResponseType<U = {}> = {
     message: string
 }
 
-export type UserReponseType = {
+export type UserResponseType<R = RoleResponseType> = {
     id: number
     email: string,
-    role: RoleResponseType
+    password?: string
+    role?: R
 }
