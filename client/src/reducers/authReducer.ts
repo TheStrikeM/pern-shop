@@ -1,5 +1,5 @@
 import {LOGOUT, SET_USER} from "../utils/constants";
-import {LogoutType, SetUserActionType} from "../types/actionTypes";
+import {InferAuthActionTypes, LogoutType, SetUserActionType} from "../types/actionTypes";
 import {UserResponseType} from "../api";
 
 const initialState = {
@@ -7,12 +7,12 @@ const initialState = {
     isAuth: false
 }
 
-export default function(state = initialState, {type, payload}: {type: string, payload: any}) {
-    switch(type) {
+export default function(state = initialState, action: AuthActionsType) {
+    switch(action.type) {
         case SET_USER:
             return {
                 ...state,
-                currentUser: payload,
+                currentUser: action.payload,
                 isAuth: true
             }
 
@@ -27,12 +27,9 @@ export default function(state = initialState, {type, payload}: {type: string, pa
     }
 }
 
-export class AuthActions {
-    static setUser(payload: UserResponseType): SetUserActionType {
-        return {type: SET_USER, payload}
-    }
 
-    static logoutUser(): LogoutType {
-        return {type: LOGOUT}
-    }
+type AuthActionsType = InferAuthActionTypes<typeof AuthActions>
+export const AuthActions = {
+    setUser: (payload: UserResponseType) => ({type: SET_USER, payload} as const),
+    logoutUser: () => ({type: LOGOUT} as const)
 }
