@@ -1,6 +1,6 @@
 import React from 'react';
-import Brand from '../../../assets/Type.svg'
-import Type from '../../../assets/Brand.svg'
+import Type from '../../../assets/Type.svg'
+import Brand from '../../../assets/Brand.svg'
 import Arrow from '../../../assets/Arrow.svg'
 
 const ShopTopsItem = ({type, name}: {type: string, name: string}) => {
@@ -9,7 +9,7 @@ const ShopTopsItem = ({type, name}: {type: string, name: string}) => {
     return (
         <div className={formattedType}>
             <div className={`${formattedType}__tag`}>
-                <img src={type == "Brand" ? Brand : Type} alt=""/>
+                <img src={type === "Brand" ? Brand : Type} alt=""/>
                 <span>{type}</span>
             </div>
 
