@@ -3,7 +3,7 @@ import {InferAuthActionTypes, LogoutType, SetUserActionType} from "../types/acti
 import {UserResponseType} from "../api";
 
 const initialState = {
-    currentUser: {},
+    currentUser: {} as UserResponseType,
     isAuth: false
 }
 
@@ -28,7 +28,7 @@ export default function(state = initialState, action: AuthActionsType) {
 }
 
 
-type AuthActionsType = InferAuthActionTypes<typeof AuthActions>
+export type AuthActionsType = InferAuthActionTypes<typeof AuthActions>
 export const AuthActions = {
     setUser: (payload: UserResponseType) => ({type: SET_USER, payload} as const),
     logoutUser: () => ({type: LOGOUT} as const)

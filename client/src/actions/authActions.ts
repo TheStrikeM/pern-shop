@@ -1,13 +1,12 @@
 import axios from "axios"
-import {AuthActions} from "../reducers/authReducer"
+import {AuthActions, AuthActionsType} from "../reducers/authReducer"
 import {Dispatch} from "redux";
-import {AuthActionTypes} from "../types/actionTypes";
 import {UserResponseType} from "../api";
 import AuthApi from "../api/authApi";
 
 
 export const registerUser = ({email, password}: UserResponseType) => {
-    return async (dispatch: Dispatch<AuthActionTypes>) => {
+    return async (dispatch: Dispatch<AuthActionsType>) => {
         try {
             const authData = await AuthApi.register(email, password)
             console.log("Поздравляю, вы успешно зарегистрировались!")
@@ -23,7 +22,7 @@ export const registerUser = ({email, password}: UserResponseType) => {
 }
 
 export const loginUser = ({email, password}: UserResponseType) => {
-    return async (dispatch: Dispatch<AuthActionTypes>) => {
+    return async (dispatch: Dispatch<AuthActionsType>) => {
         try {
             const authData = await AuthApi.login(email, password)
             console.log("Поздравляю, вы успешно авторизировались!")
@@ -39,7 +38,7 @@ export const loginUser = ({email, password}: UserResponseType) => {
 }
 
 export const authUser = () => {
-    return async (dispatch: Dispatch<AuthActionTypes>) => {
+    return async (dispatch: Dispatch<AuthActionsType>) => {
         try {
             const authData = await AuthApi.auth()
 
